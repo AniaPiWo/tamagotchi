@@ -58,4 +58,7 @@ body {
   background: #f8d26d;
   margin-top: 24px;
   margin-bottom: 47.94px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
