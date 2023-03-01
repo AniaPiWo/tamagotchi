@@ -12,12 +12,14 @@ export default class Tamagotchi {
     console.log(" Fun initial value:", this.fun.value);
 
     this.healthDecrease = setInterval(() => {
-      this.health.value -= 1;
-      console.log(" Health decreased to", this.health.value);
-      this.displayHealth(".healthPoints");
-      if (this.health.value <= 0) {
-        console.log("💀");
-        clearInterval(this.healthDecrease);
+      if (this.hunger.value <= 0 || this.energy.value <= 0) {
+        this.health.value -= 1;
+        console.log(" Health decreased to", this.health.value);
+        this.displayHealth(".healthPoints");
+        if (this.health.value <= 0) {
+          console.log("💀");
+          clearInterval(this.healthDecrease);
+        }
       }
     }, 1000);
 
@@ -32,14 +34,21 @@ export default class Tamagotchi {
     }, 1000);
 
     this.energyDecrease = setInterval(() => {
-      this.energy.value -= 1;
+      let decrementValue = 1;
+      if (this.fun.value <= 0) {
+        decrementValue = 2;
+      }
+      this.energy.value -= decrementValue;
+      if (this.energy.value < 0) {
+        this.energy.value = 0;
+      }
       console.log("\u001b[1;36m Energy decreased to", this.energy.value);
       this.displayEnergy(".energyPoints");
       if (this.energy.value <= 0) {
         console.log("💀");
         clearInterval(this.energyDecrease);
       }
-    }, 1000);
+    }, 2000);
 
     this.funDecrease = setInterval(() => {
       this.fun.value -= 1;
