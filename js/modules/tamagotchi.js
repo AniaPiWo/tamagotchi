@@ -12,7 +12,7 @@ export default class Tamagotchi {
         this.displayHealth(this.health.element);
         if (this.health.value <= 0) {
           console.log("💀");
-          clearInterval(this.health.element);
+          clearInterval(this.healthDecrease);
         }
       }
     }, 1000);
@@ -22,7 +22,7 @@ export default class Tamagotchi {
       this.displayHunger(this.hunger.element);
       if (this.hunger.value <= 0) {
         console.log("💀");
-        clearInterval(this.hunger.element);
+        clearInterval(this.hungerDecrease);
       }
     }, 1000);
 
@@ -38,7 +38,7 @@ export default class Tamagotchi {
       this.displayEnergy(this.energy.element);
       if (this.energy.value <= 0) {
         console.log("💀");
-        clearInterval(this.energy.element);
+        clearInterval(this.energyDecrease);
       }
     }, 2000);
 
@@ -47,7 +47,7 @@ export default class Tamagotchi {
       this.displayFun(this.fun.element);
       if (this.fun.value <= 0) {
         console.log("💀");
-        clearInterval(this.fun.element);
+        clearInterval(this.funDecrease);
       }
     }, 1000);
   }
