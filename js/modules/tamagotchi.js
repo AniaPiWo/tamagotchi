@@ -1,25 +1,14 @@
 export default class Tamagotchi {
   constructor() {
-    this.health = { value: 10, importance: 1 };
-    this.hunger = { value: 10, importance: 3 };
-    this.energy = { value: 10, importance: 2 };
-    this.fun = { value: 10, importance: 4 };
+    this.health = { value: 10, importance: 1, element: null };
+    this.hunger = { value: 10, importance: 3, element: null };
+    this.energy = { value: 10, importance: 2, element: null };
+    this.fun = { value: 10, importance: 4, element: null };
     console.log("Tamagotchi initialized");
-
-    const healthElement = ".healthPoints";
-    const hungerElement = ".hungerPoints";
-    const energyElement = ".energyPoints";
-    const funElement = ".funPoints";
-
-    console.log(" health initial value:", this.health.value);
-    console.log(" Energy initial value:", this.energy.value);
-    console.log(" Hunger initial value:", this.hunger.value);
-    console.log(" Fun initial value:", this.fun.value);
 
     this.healthDecrease = setInterval(() => {
       if (this.hunger.value <= 0 || this.energy.value <= 0) {
         this.health.value -= 1;
-        console.log(" Health decreased to", this.health.value);
         this.displayHealth(healthElement);
         if (this.health.value <= 0) {
           console.log("💀");
@@ -30,7 +19,6 @@ export default class Tamagotchi {
 
     this.hungerDecrease = setInterval(() => {
       this.hunger.value -= 1;
-      console.log("\u001b[1;35m Hunger decreased to", this.hunger.value);
       this.displayHunger(hungerElement);
       if (this.hunger.value <= 0) {
         console.log("💀");
@@ -47,7 +35,6 @@ export default class Tamagotchi {
       if (this.energy.value < 0) {
         this.energy.value = 0;
       }
-      console.log("\u001b[1;36m Energy decreased to", this.energy.value);
       this.displayEnergy(energyElement);
       if (this.energy.value <= 0) {
         console.log("💀");
@@ -57,7 +44,6 @@ export default class Tamagotchi {
 
     this.funDecrease = setInterval(() => {
       this.fun.value -= 1;
-      console.log("\u001b[1;34m Fun decreased to", this.fun.value);
       this.displayFun(funElement);
       if (this.fun.value <= 0) {
         console.log("💀");
