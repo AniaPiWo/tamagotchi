@@ -9,20 +9,20 @@ export default class Tamagotchi {
     this.healthDecrease = setInterval(() => {
       if (this.hunger.value <= 0 || this.energy.value <= 0) {
         this.health.value -= 1;
-        this.displayHealth(healthElement);
+        this.displayHealth(this.health.element);
         if (this.health.value <= 0) {
           console.log("💀");
-          clearInterval(this.healthDecrease);
+          clearInterval(this.health.element);
         }
       }
     }, 1000);
 
     this.hungerDecrease = setInterval(() => {
       this.hunger.value -= 1;
-      this.displayHunger(hungerElement);
+      this.displayHunger(this.hunger.element);
       if (this.hunger.value <= 0) {
         console.log("💀");
-        clearInterval(this.hungerDecrease);
+        clearInterval(this.hunger.element);
       }
     }, 1000);
 
@@ -35,19 +35,19 @@ export default class Tamagotchi {
       if (this.energy.value < 0) {
         this.energy.value = 0;
       }
-      this.displayEnergy(energyElement);
+      this.displayEnergy(this.energy.element);
       if (this.energy.value <= 0) {
         console.log("💀");
-        clearInterval(this.energyDecrease);
+        clearInterval(this.energy.element);
       }
     }, 2000);
 
     this.funDecrease = setInterval(() => {
       this.fun.value -= 1;
-      this.displayFun(funElement);
+      this.displayFun(this.fun.element);
       if (this.fun.value <= 0) {
         console.log("💀");
-        clearInterval(this.funDecrease);
+        clearInterval(this.fun.element);
       }
     }, 1000);
   }
