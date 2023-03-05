@@ -51,7 +51,7 @@ body {
   flex-direction: row;
   gap: 17px;
   justify-content: space-between;
-  padding-bottom: 26px;
+  padding-bottom: 15px;
   width: 100%;
 }
 
@@ -69,14 +69,17 @@ body {
 .screen__character {
   border: 7px solid #9fdcf9;
   width: 100%;
+  height: 300px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   margin-left: 25px;
   margin-right: 25px;
-  padding-top: 77px;
-  padding-bottom: 65px;
+}
+
+.Nimo-img {
+  max-width: 200px;
 }
 
 .screen__characterState {
@@ -108,4 +111,10 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+}
+
+.gameBoy__button:active {
+  box-shadow: none;
+  transform: translateY(7px);
 }

@@ -1,8 +1,15 @@
 import Tamagotchi from "./modules/tamagotchi.js";
+import Abilities from "./modules/abilities.js";
 
 export default class Game {
   constructor() {
-    this.tamagotchi = new Tamagotchi();
+    this.tamagotchi = new Tamagotchi({
+      characterState: document.querySelector(".screen__characterState"),
+      characterImage: document.querySelector(".screen__character img"),
+    });
+    this.abilities = new Abilities({
+      characterState: document.querySelector(".screen__characterState"),
+    });
   }
 
   start = ({ healthElement, hungerElement, energyElement, funElement }) => {
