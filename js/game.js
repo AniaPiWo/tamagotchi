@@ -3,12 +3,19 @@ import Abilities from "./modules/abilities.js";
 
 export default class Game {
   constructor() {
+    this.hunger;
+    this.health;
     this.tamagotchi = new Tamagotchi({
       characterState: document.querySelector(".screen__characterState"),
       characterImage: document.querySelector(".screen__character img"),
+      hunger: this.hunger,
+      health: this.health,
     });
     this.abilities = new Abilities({
       characterState: document.querySelector(".screen__characterState"),
+      characterImage: document.querySelector(".screen__character img"),
+      hunger: this.hunger,
+      health: this.health,
     });
   }
 

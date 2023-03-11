@@ -1,11 +1,12 @@
 export default class Tamagotchi {
-  constructor({ characterState, characterImage }) {
-    this.health = { value: 10, importance: 1, element: null };
-    this.hunger = { value: 10, importance: 3, element: null };
+  constructor({ characterState, characterImage, hunger, health }) {
+    this.health = health = { value: 10, importance: 1, element: null };
+    this.hunger = hunger = { value: 10, importance: 3, element: null };
     this.energy = { value: 10, importance: 2, element: null };
     this.fun = { value: 10, importance: 4, element: null };
     this.characterState = characterState;
     this.characterImage = characterImage;
+
     console.log("Tamagotchi initialized");
 
     this.healthDecrease = setInterval(() => {
