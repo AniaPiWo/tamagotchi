@@ -7,9 +7,7 @@ export default class Game {
       characterState: document.querySelector(".screen__characterState"),
       characterImage: document.querySelector(".screen__character img"),
     });
-    this.abilities = new Abilities({
-      characterState: document.querySelector(".screen__characterState"),
-    });
+    this.abilities = new Abilities(this.tamagotchi);
   }
 
   start = ({ healthElement, hungerElement, energyElement, funElement }) => {

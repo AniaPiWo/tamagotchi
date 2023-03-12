@@ -1,5 +1,6 @@
 export default class Abilities {
-  constructor({ characterState }) {
+  constructor(tamagotchi) {
+    this.tamagotchi = tamagotchi;
     console.log("Abilities module initialized");
 
     const buttons = [
@@ -7,12 +8,19 @@ export default class Abilities {
       { class: ".eat", state: "EATING" },
       { class: ".sleep", state: "SLEEPING" },
     ];
-
-    buttons.forEach(({ class: buttonClass, state }) => {
+    buttons.forEach(({ class: buttonClass }) => {
       const button = document.querySelector(buttonClass);
-      button.addEventListener("mousedown", () => {
-        characterState.innerText = state;
-      });
+      if (button.classList.contains("eat")) {
+        button.addEventListener("click", this.toggleEating);
+      } else if (button.classList.contains("sleep")) {
+        button.addEventListener("click", this.startSleeping);
+      } else if (button.classList.contains("play")) {
+        button.addEventListener("click", this.startPlaying);
+      }
     });
   }
+
+  startPlaying = () => {
+    console.log("Tamagoczi:", this.tamagot);
+  };
 }
