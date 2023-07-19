@@ -12,6 +12,10 @@ body {
   height: 100vh;
 }
 
+button {
+  cursor: pointer;
+}
+/* This is the code fragment that I completed on previous PR that covers task requirements */
 .bar {
   color: black;
 }
