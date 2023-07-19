@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -7,7 +6,48 @@
   </head>
   <body>
     <div class="gameBoy">
-      <p class="bar">Energy <span class="health" /></p>
+      <div class="screen">
+        <div class="paramsBox">
+          <p class="bar">
+            <img src="./img/IconHealth.png" alt="heart" /><span
+              class="health"
+            ></span>
+          </p>
+          <p class="bar">
+            <img src="./img/IconHunger.png" alt="apple" /><span
+              class="hunger"
+            ></span>
+          </p>
+          <p class="bar">
+            <img src="./img/IconSleep.png" alt="sleep" /><span
+              class="energy"
+            ></span>
+          </p>
+          <p class="bar">
+            <img src="./img/IconFun.png" alt="football" /><span
+              class="fun"
+            ></span>
+          </p>
+        </div>
+        <div class="heroBox">
+          <img src="./img/Nimo.png" alt="pixel cat" /><img
+            src="./img/line1.png"
+            alt="line"
+          />
+        </div>
+        <div class="moodBox">HAPPY</div>
+      </div>
+      <div class="buttonBox">
+        <button class="action-btn" id="eat">
+          <img src="./img/IconHunger.png" alt="apple" />
+        </button>
+        <button class="action-btn" id="sleep">
+          <img src="./img/IconSleep.png" alt="sleep" />
+        </button>
+        <button class="action-btn" id="play">
+          <img src="./img/IconFun.png" alt="football" />
+        </button>
+      </div>
     </div>
 
     <script src="./app.js" type="module"></script>
