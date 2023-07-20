@@ -12,4 +12,9 @@ export default class Tamagotchi {
     if (param.value <= 0) param.value = 0;
     /* console.log(`${param.name}: `, param.value); */
   }
+
+  increaseParams(param, amount) {
+    param.value += amount;
+    console.log(`${param.name}: `, param.value);
+  }
 }

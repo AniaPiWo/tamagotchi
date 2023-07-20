@@ -92,6 +92,12 @@ export default class Game {
     const funSpan = document.getElementById("fun");
     const moodSpan = document.getElementById("mood");
     const imgDiv = document.getElementById("image");
+    const eatBtn = document.getElementById("eat");
+
+    eatBtn.addEventListener("click", () => {
+      this.eat();
+    });
+
     this.updateParams(
       healthSpan,
       hungerSpan,
@@ -108,7 +114,5 @@ export default class Game {
       moodSpan,
       imgDiv
     );
-    console.log(imgDiv);
-    console.log(this.tamagotchi.imgSrc.value);
   }
 }
