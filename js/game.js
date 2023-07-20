@@ -12,13 +12,7 @@ export default class Game {
     funSpan.textContent = this.tamagotchi.fun.value;
   }
 
-  start() {
-    const healthSpan = document.getElementById("health");
-    const hungerSpan = document.getElementById("hunger");
-    const energySpan = document.getElementById("energy");
-    const funSpan = document.getElementById("fun");
-    this.updateParams(healthSpan, hungerSpan, energySpan, funSpan);
-
+  createIntervals(healthSpan, hungerSpan, energySpan, funSpan) {
     this.interval = setInterval(() => {
       this.tamagotchi.decreaseParams(this.tamagotchi.health, 1);
       this.tamagotchi.decreaseParams(this.tamagotchi.hunger, 1);
@@ -44,5 +38,14 @@ export default class Game {
 
       this.updateParams(healthSpan, hungerSpan, energySpan, funSpan);
     }, 2000);
+  }
+
+  start() {
+    const healthSpan = document.getElementById("health");
+    const hungerSpan = document.getElementById("hunger");
+    const energySpan = document.getElementById("energy");
+    const funSpan = document.getElementById("fun");
+    this.updateParams(healthSpan, hungerSpan, energySpan, funSpan);
+    this.createIntervals(healthSpan, hungerSpan, energySpan, funSpan);
   }
 }
