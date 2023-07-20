@@ -15,6 +15,6 @@ export default class Tamagotchi {
 
   increaseParams(param, amount) {
     param.value += amount;
-    console.log(`${param.name}: `, param.value);
+    /*  console.log(`${param.name}: `, param.value); */
   }
 }
