@@ -10,7 +10,8 @@ export default class Game {
     this.moodSpan = document.getElementById("mood");
     this.imgDiv = document.getElementById("image");
     this.eatBtn = document.getElementById("eat");
-    this.eatingInterval = null;
+    this.sleepBtn = document.getElementById("sleep");
+    this.actionInterval = null;
   }
 
   changeMood() {
@@ -60,7 +61,9 @@ export default class Game {
         clearInterval(this.interval);
       }
 
-      if (this.tamagotchi.mood.value !== "EATING") {
+      if (
+        !["EATING", "SLEEPING", "PLAYING"].includes(this.tamagotchi.mood.value)
+      ) {
         this.changeMood();
       }
       this.updateParams();
@@ -75,37 +78,59 @@ export default class Game {
       if (this.tamagotchi.health.value <= 0) {
         clearInterval(this.interval);
       }
-      if (this.tamagotchi.mood.value !== "EATING") {
+      if (
+        !["EATING", "SLEEPING", "PLAYING"].includes(this.tamagotchi.mood.value)
+      ) {
         this.changeMood();
       }
       this.updateParams();
     }, 2000);
   }
 
-  eat() {
-    if (this.tamagotchi.mood.value === "EATING") {
-      this.stopEating();
+  action(param, actionName, imgSrc, intervalTime, increaseAmount) {
+    if (this.actionInterval) {
+      clearInterval(this.actionInterval);
+      this.actionInterval = null;
+    }
+
+    if (this.tamagotchi.mood.value === actionName) {
+      this.stopAction();
     } else {
-      this.eatingInterval = setInterval(() => {
-        this.tamagotchi.increaseParams(this.tamagotchi.hunger, 2);
-        this.tamagotchi.mood.value = "EATING";
-        this.tamagotchi.imgSrc.value = "./img/actions/eating.gif";
+      this.actionInterval = setInterval(() => {
+        this.tamagotchi.increaseParams(param, increaseAmount);
+        this.tamagotchi.mood.value = actionName;
+        this.tamagotchi.imgSrc.value = imgSrc;
         this.updateParams();
-      }, 1000);
+      }, intervalTime);
     }
   }
-
-  stopEating() {
+  stopAction() {
     this.tamagotchi.mood.value = "HAPPY";
     this.tamagotchi.imgSrc.value = "./img/Nimo.png";
-    clearInterval(this.eatingInterval);
+    clearInterval(this.actionInterval);
     this.changeMood();
     this.updateParams();
   }
 
   start() {
     this.eatBtn.addEventListener("click", () => {
-      this.eat();
+      this.action(
+        this.tamagotchi.hunger,
+        "EATING",
+        "./img/actions/eating.gif",
+        1000,
+        2
+      );
+    });
+
+    this.sleepBtn.addEventListener("click", () => {
+      this.action(
+        this.tamagotchi.energy,
+        "SLEEPING",
+        "./img/actions/sleeping.gif",
+        1000,
+        2
+      );
     });
     this.updateParams();
     this.createIntervals();
