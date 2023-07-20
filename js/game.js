@@ -11,6 +11,7 @@ export default class Game {
     this.imgDiv = document.getElementById("image");
     this.eatBtn = document.getElementById("eat");
     this.sleepBtn = document.getElementById("sleep");
+    this.playBtn = document.getElementById("play");
     this.actionInterval = null;
   }
 
@@ -132,6 +133,19 @@ export default class Game {
         2
       );
     });
+
+    this.playBtn.addEventListener("click", () => {
+      this.action(
+        this.tamagotchi.fun,
+        "PLAYING",
+        "./img/actions/playing.gif",
+        1000,
+        2
+      );
+      this.tamagotchi.decreaseParams(this.tamagotchi.energy, 1);
+      this.updateParams();
+    });
+
     this.updateParams();
     this.createIntervals();
   }
