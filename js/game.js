@@ -44,6 +44,7 @@ export default class Game {
         this.tamagotchi.fun.value >= 7
       ) {
         this.tamagotchi.mood.value = "HAPPY";
+        this.tamagotchi.imgSrc.value = "./img/Nimo.png";
       } else if (this.tamagotchi.energy.value <= 6) {
         this.tamagotchi.mood.value = "SLEEPY";
         this.tamagotchi.imgSrc.value = "./img/NimoMoods/State=Sleepy.png";
