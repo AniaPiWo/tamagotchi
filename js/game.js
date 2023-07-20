@@ -62,7 +62,7 @@ export default class Game {
         clearInterval(this.interval);
       }
       if (this.tamagotchi.mood.value === "PLAYING") {
-        this.tamagotchi.decreaseParams(this.tamagotchi.energy, 2);
+        this.tamagotchi.decreaseParams(this.tamagotchi.energy, 1);
       }
       if (
         !["EATING", "SLEEPING", "PLAYING"].includes(this.tamagotchi.mood.value)
