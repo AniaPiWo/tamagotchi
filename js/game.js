@@ -41,7 +41,7 @@ export default class Game {
         this.tamagotchi.hunger.value >= 7 &&
         this.tamagotchi.energy.value >= 7 &&
         this.tamagotchi.health.value >= 7 &&
-        this.tamagotchi.health.value >= 7
+        this.tamagotchi.fun.value >= 7
       ) {
         this.tamagotchi.mood.value = "HAPPY";
       } else if (this.tamagotchi.energy.value <= 6) {
