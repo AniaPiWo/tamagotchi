@@ -11,6 +11,7 @@ export default class Game {
     this.imgDiv = document.getElementById("image");
     this.eatBtn = document.getElementById("eat");
     this.sleepBtn = document.getElementById("sleep");
+    this.playBtn = document.getElementById("play");
     this.actionInterval = null;
   }
 
@@ -60,7 +61,9 @@ export default class Game {
       if (this.tamagotchi.health.value <= 0) {
         clearInterval(this.interval);
       }
-
+      if (this.tamagotchi.mood.value === "PLAYING") {
+        this.tamagotchi.decreaseParams(this.tamagotchi.energy, 1);
+      }
       if (
         !["EATING", "SLEEPING", "PLAYING"].includes(this.tamagotchi.mood.value)
       ) {
@@ -132,6 +135,17 @@ export default class Game {
         2
       );
     });
+
+    this.playBtn.addEventListener("click", () => {
+      this.action(
+        this.tamagotchi.fun,
+        "PLAYING",
+        "./img/actions/playing.gif",
+        1000,
+        2
+      );
+    });
+
     this.updateParams();
     this.createIntervals();
   }
