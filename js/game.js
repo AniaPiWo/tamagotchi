@@ -5,14 +5,23 @@ export default class Game {
     this.tamagotchi = new Tamagotchi();
   }
 
-  updateParams(healthSpan, hungerSpan, energySpan, funSpan) {
+  updateParams(healthSpan, hungerSpan, energySpan, funSpan, moodSpan, imgDiv) {
     healthSpan.textContent = this.tamagotchi.health.value;
     hungerSpan.textContent = this.tamagotchi.hunger.value;
     energySpan.textContent = this.tamagotchi.energy.value;
     funSpan.textContent = this.tamagotchi.fun.value;
+    moodSpan.textContent = this.tamagotchi.mood.value;
+    imgDiv.src = this.tamagotchi.imgSrc.value;
   }
 
-  createIntervals(healthSpan, hungerSpan, energySpan, funSpan) {
+  createIntervals(
+    healthSpan,
+    hungerSpan,
+    energySpan,
+    funSpan,
+    moodSpan,
+    imgDiv
+  ) {
     this.interval = setInterval(() => {
       this.tamagotchi.decreaseParams(this.tamagotchi.health, 1);
       this.tamagotchi.decreaseParams(this.tamagotchi.hunger, 1);
@@ -25,8 +34,34 @@ export default class Game {
         this.tamagotchi.decreaseParams(this.tamagotchi.health, 1);
         this.tamagotchi.decreaseParams(this.tamagotchi.energy, 1);
       }
-
-      this.updateParams(healthSpan, hungerSpan, energySpan, funSpan);
+      if (this.tamagotchi.health.value <= 0) {
+        clearInterval(this.interval);
+      }
+      if (
+        this.tamagotchi.hunger.value >= 7 &&
+        this.tamagotchi.energy.value >= 7 &&
+        this.tamagotchi.health.value >= 7 &&
+        this.tamagotchi.health.value >= 7
+      ) {
+        this.tamagotchi.mood.value = "HAPPY";
+      } else if (this.tamagotchi.energy.value <= 6) {
+        this.tamagotchi.mood.value = "SLEEPY";
+        this.tamagotchi.imgSrc.value = "./img/NimoMoods/State=Sleepy.png";
+      } else if (this.tamagotchi.hunger.value <= 6) {
+        this.tamagotchi.mood.value = "HUNGRY";
+        this.tamagotchi.imgSrc.value = "./img/NimoMoods/State=Hungry.png";
+      } else if (this.tamagotchi.fun.value <= 6) {
+        this.tamagotchi.mood.value = "SAD";
+        this.tamagotchi.imgSrc.value = "./img/NimoMoods/State=Bored.png";
+      }
+      this.updateParams(
+        healthSpan,
+        hungerSpan,
+        energySpan,
+        funSpan,
+        moodSpan,
+        imgDiv
+      );
     }, 1000);
 
     this.energyInterval = setInterval(() => {
@@ -35,8 +70,17 @@ export default class Game {
       if (this.tamagotchi.fun.value <= 0) {
         this.tamagotchi.decreaseParams(this.tamagotchi.energy, 1);
       }
-
-      this.updateParams(healthSpan, hungerSpan, energySpan, funSpan);
+      if (this.tamagotchi.health.value <= 0) {
+        clearInterval(this.interval);
+      }
+      this.updateParams(
+        healthSpan,
+        hungerSpan,
+        energySpan,
+        funSpan,
+        moodSpan,
+        imgDiv
+      );
     }, 2000);
   }
 
@@ -45,7 +89,25 @@ export default class Game {
     const hungerSpan = document.getElementById("hunger");
     const energySpan = document.getElementById("energy");
     const funSpan = document.getElementById("fun");
-    this.updateParams(healthSpan, hungerSpan, energySpan, funSpan);
-    this.createIntervals(healthSpan, hungerSpan, energySpan, funSpan);
+    const moodSpan = document.getElementById("mood");
+    const imgDiv = document.getElementById("image");
+    this.updateParams(
+      healthSpan,
+      hungerSpan,
+      energySpan,
+      funSpan,
+      moodSpan,
+      imgDiv
+    );
+    this.createIntervals(
+      healthSpan,
+      hungerSpan,
+      energySpan,
+      funSpan,
+      moodSpan,
+      imgDiv
+    );
+    console.log(imgDiv);
+    console.log(this.tamagotchi.imgSrc.value);
   }
 }

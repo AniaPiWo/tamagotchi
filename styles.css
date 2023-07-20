@@ -91,6 +91,10 @@ button {
   padding-bottom: 65px;
 }
 
+.heroBox img {
+  width: 150px;
+}
+
 .buttonBox {
   display: flex;
   align-items: center;
