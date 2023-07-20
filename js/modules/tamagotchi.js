@@ -1,21 +1,13 @@
 export default class Tamagotchi {
   constructor() {
-    this.health = { value: 10, importance: 1 };
-    this.hunger = { value: 10, importance: 3 };
-    this.energy = { value: 10, importance: 2 };
-    this.fun = { value: 10, importance: 4 };
-    console.log("Tamagotchi initialized");
+    this.health = { name: "health", value: 10, importance: 1 };
+    this.hunger = { name: "hunger", value: 10, importance: 3 };
+    this.energy = { name: "energy", value: 10, importance: 2 };
+    this.fun = { name: "fun", value: 10, importance: 4 };
   }
-
-  displayElement = (elementSelector, property) => {
-    const displayElement = document.querySelector(elementSelector);
-    displayElement.innerText = this[property].value;
-  };
-
-  mount = ({ healthElement, hungerElement, energyElement, funElement }) => {
-    this.displayElement(healthElement, "health");
-    this.displayElement(hungerElement, "hunger");
-    this.displayElement(energyElement, "energy");
-    this.displayElement(funElement, "fun");
-  };
+  decreaseParams(param, amount) {
+    param.value -= amount;
+    if (param.value <= 0) param.value = 0;
+    console.log(`${param.name}: `, param.value);
+  }
 }
