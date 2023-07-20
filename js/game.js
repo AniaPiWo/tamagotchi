@@ -23,11 +23,13 @@ export default class Game {
       this.tamagotchi.decreaseParams(this.tamagotchi.health, 1);
       this.tamagotchi.decreaseParams(this.tamagotchi.hunger, 1);
       this.tamagotchi.decreaseParams(this.tamagotchi.fun, 1);
+
       if (
         this.tamagotchi.hunger.value <= 0 ||
         this.tamagotchi.energy.value <= 0
       ) {
-        this.tamagotchi.decreaseParams(this.tamagotchi.health, 2);
+        this.tamagotchi.decreaseParams(this.tamagotchi.health, 1);
+        this.tamagotchi.decreaseParams(this.tamagotchi.energy, 1);
       }
 
       this.updateParams(healthSpan, hungerSpan, energySpan, funSpan);
@@ -35,9 +37,11 @@ export default class Game {
 
     this.energyInterval = setInterval(() => {
       this.tamagotchi.decreaseParams(this.tamagotchi.energy, 1);
+
       if (this.tamagotchi.fun.value <= 0) {
-        this.tamagotchi.decreaseParams(this.tamagotchi.energy, 2);
+        this.tamagotchi.decreaseParams(this.tamagotchi.energy, 1);
       }
+
       this.updateParams(healthSpan, hungerSpan, energySpan, funSpan);
     }, 2000);
   }
