@@ -1,4 +1,4 @@
-import Tamagotchi from "./modules/tamagotchi.js";
+import Tamagotchi from "./modules/tamagotchi";
 
 export default class Game {
   constructor() {

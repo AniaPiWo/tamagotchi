@@ -4,9 +4,13 @@
   "description": "<h1 align=\"center\">\r   Tamagotchi 👾\r </h1>",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node dist/app.js",
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.1.6"
+  }
 }
