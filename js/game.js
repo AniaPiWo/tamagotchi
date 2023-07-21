@@ -133,6 +133,22 @@ export default class Game {
     this.updateParams();
   }
 
+  restart() {
+    clearInterval(this.interval);
+    clearInterval(this.energyInterval);
+    if (this.actionInterval) {
+      clearInterval(this.actionInterval);
+      this.actionInterval = null;
+    }
+    this.tamagotchi = new Tamagotchi();
+    this.eatBtn.style.display = "block";
+    this.sleepBtn.style.display = "block";
+    this.playBtn.style.display = "block";
+    this.restartBtn.style.display = "none";
+    this.updateParams();
+    this.createIntervals();
+  }
+
   start() {
     this.eatBtn.addEventListener("click", () => {
       this.action(
@@ -163,6 +179,8 @@ export default class Game {
         2
       );
     });
+
+    this.restartBtn.addEventListener("click", () => this.restart());
 
     this.updateParams();
     this.createIntervals();
