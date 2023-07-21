@@ -1,4 +1,4 @@
-import Tamagotchi from "./modules/tamagotchi";
+import Tamagotchi from "./modules/tamagotchi.js";
 
 export default class Game {
   constructor() {
@@ -17,11 +17,6 @@ export default class Game {
   }
 
   changeMood() {
-    if (
-      ["EATING", "SLEEPING", "PLAYING"].includes(this.tamagotchi.mood.value)
-    ) {
-      return;
-    }
     if (this.tamagotchi.health.value <= 0) {
       this.tamagotchi.mood.value = "DEAD";
       this.tamagotchi.imgSrc.value = "./img/NimoMoods/State=Dead.png";
@@ -33,6 +28,10 @@ export default class Game {
       if (this.actionInterval) {
         clearInterval(this.actionInterval);
         this.actionInterval = null;
+      } else if (
+        ["EATING", "SLEEPING", "PLAYING"].includes(this.tamagotchi.mood.value)
+      ) {
+        return;
       }
       this.eatBtn.style.display = "none";
       this.sleepBtn.style.display = "none";

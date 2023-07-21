@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "<h1 align=\"center\">\r   Tamagotchi 👾\r </h1>",
   "main": "app.js",
+  "type": "module",
   "scripts": {
     "start": "node dist/app.js",
     "build": "tsc"
