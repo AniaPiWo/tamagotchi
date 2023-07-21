@@ -28,15 +28,16 @@ export default class Game {
       if (this.actionInterval) {
         clearInterval(this.actionInterval);
         this.actionInterval = null;
-      } else if (
-        ["EATING", "SLEEPING", "PLAYING"].includes(this.tamagotchi.mood.value)
-      ) {
-        return;
       }
+
       this.eatBtn.style.display = "none";
       this.sleepBtn.style.display = "none";
       this.playBtn.style.display = "none";
       this.restartBtn.style.display = "block";
+    } else if (
+      ["EATING", "SLEEPING", "PLAYING"].includes(this.tamagotchi.mood.value)
+    ) {
+      return;
     } else if (
       this.tamagotchi.hunger.value >= 7 &&
       this.tamagotchi.energy.value >= 7 &&
