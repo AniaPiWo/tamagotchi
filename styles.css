@@ -118,3 +118,15 @@ button {
 .action-btn img {
   width: 40px;
 }
+
+.restart-btn {
+  display: none;
+  border: none;
+  filter: drop-shadow(0px 7px 0px #724d50);
+  transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+}
+
+.restart-btn:hover {
+  transform: translateY(7px);
+  filter: none;
+}

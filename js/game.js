@@ -12,11 +12,33 @@ export default class Game {
     this.eatBtn = document.getElementById("eat");
     this.sleepBtn = document.getElementById("sleep");
     this.playBtn = document.getElementById("play");
+    this.restartBtn = document.getElementById("restart");
     this.actionInterval = null;
   }
 
   changeMood() {
     if (
+      ["EATING", "SLEEPING", "PLAYING"].includes(this.tamagotchi.mood.value)
+    ) {
+      return;
+    }
+    if (this.tamagotchi.health.value <= 0) {
+      this.tamagotchi.mood.value = "DEAD";
+      this.tamagotchi.imgSrc.value = "./img/NimoMoods/State=Dead.png";
+      this.tamagotchi.hunger.value = 0;
+      this.tamagotchi.energy.value = 0;
+      this.tamagotchi.fun.value = 0;
+      clearInterval(this.interval);
+      clearInterval(this.energyInterval);
+      if (this.actionInterval) {
+        clearInterval(this.actionInterval);
+        this.actionInterval = null;
+      }
+      this.eatBtn.style.display = "none";
+      this.sleepBtn.style.display = "none";
+      this.playBtn.style.display = "none";
+      this.restartBtn.style.display = "block";
+    } else if (
       this.tamagotchi.hunger.value >= 7 &&
       this.tamagotchi.energy.value >= 7 &&
       this.tamagotchi.health.value >= 7 &&
@@ -64,11 +86,9 @@ export default class Game {
       if (this.tamagotchi.mood.value === "PLAYING") {
         this.tamagotchi.decreaseParams(this.tamagotchi.energy, 1);
       }
-      if (
-        !["EATING", "SLEEPING", "PLAYING"].includes(this.tamagotchi.mood.value)
-      ) {
-        this.changeMood();
-      }
+
+      this.changeMood();
+
       this.updateParams();
     }, 1000);
 
@@ -81,11 +101,9 @@ export default class Game {
       if (this.tamagotchi.health.value <= 0) {
         clearInterval(this.interval);
       }
-      if (
-        !["EATING", "SLEEPING", "PLAYING"].includes(this.tamagotchi.mood.value)
-      ) {
-        this.changeMood();
-      }
+
+      this.changeMood();
+
       this.updateParams();
     }, 2000);
   }
